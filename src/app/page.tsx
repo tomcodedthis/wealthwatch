@@ -1,13 +1,7 @@
 import Link from "next/link";
 
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu";
+import { NavBar } from "@/app/components/root/navBar";
+import { Button } from "@/app/components/ui/button";
 import { auth } from "@/server/auth";
 import { api, HydrateClient } from "@/trpc/server";
 
@@ -23,24 +17,12 @@ export default async function Home() {
     <HydrateClient>
       <main className="flex min-h-screen items-start bg-gradient-to-b from-[#05050b] to-[#010a2b]">
         <header className="flex w-full items-center justify-between p-5">
-          <NavigationMenu>
-            <NavigationMenuList>
-              <NavigationMenuItem>
-                <NavigationMenuTrigger>Investments</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <NavigationMenuLink>Link</NavigationMenuLink>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
+          <NavBar />
 
-          <div>
+          <div className="flex gap-2">
             {session && <p> Hi {session?.user.name} </p>}
-            <Link
-              href={session ? "/api/auth/signout" : "/api/auth/signin"}
-              className="rounded-full bg-white/10 px-8 py-2 font-semibold no-underline transition hover:bg-white/15"
-            >
-              {session ? "Sign Out" : "Sign In"}
+            <Link href={session ? "/api/auth/signout" : "/api/auth/signin"}>
+              <Button>{session ? "Sign Out" : "Sign In"}</Button>
             </Link>
           </div>
         </header>

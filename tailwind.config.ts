@@ -15,7 +15,9 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
-      colors: {},
+      colors: {
+        accent: '#292524'
+      },
     },
   },
   plugins: [twAnimate],
