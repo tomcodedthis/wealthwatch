@@ -21,7 +21,7 @@ export default async function Home() {
 
   return (
     <HydrateClient>
-      <main className="flex min-h-screen items-start bg-gradient-to-b from-[#080811] to-[#010f44] text-white">
+      <main className="flex min-h-screen items-start bg-gradient-to-b from-[#05050b] to-[#010a2b]">
         <header className="flex w-full items-center justify-between p-5">
           <NavigationMenu>
             <NavigationMenuList>
