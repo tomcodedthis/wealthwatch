@@ -1,4 +1,3 @@
-import { navigationMenuTriggerStyle } from "@/app/components/ui/navigationMenu";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -6,7 +5,8 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-} from "@/components/ui/navigationMenu";
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
@@ -51,8 +51,8 @@ export function NavBar() {
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <NavigationMenuLink className={navigationMenuTriggerStyle()} asChild>
-            <Link href="/about">About</Link>
+          <NavigationMenuLink asChild>
+            <Link href="/about" className={navigationMenuTriggerStyle() + ' hover:bg-accent/50'}>About</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
       </NavigationMenuList>
@@ -78,11 +78,11 @@ function NavItem({
   href: string;
 }>) {
   return (
-    <NavigationMenuLink asChild>
+    <NavigationMenuLink asChild className="hover:bg-accent/50 rounded-md">
       <Link href={href}>
-        <li className="h-full hover:bg-accent focus:bg-accent focus:text-accent-foreground flex flex-col gap-2 select-none rounded-md p-3">
+        <li className="h-full select-none flex flex-col gap-2 p-3">
           <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
             {description}
           </p>
         </li>
