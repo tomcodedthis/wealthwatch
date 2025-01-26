@@ -1,7 +1,4 @@
-import Link from "next/link";
-
-import { NavBar } from "@/app/components/root/navBar";
-import { Button } from "@/app/components/ui/button";
+import { Header } from "@/components/root/header";
 import { auth } from "@/server/auth";
 import { api, HydrateClient } from "@/trpc/server";
 
@@ -15,18 +12,9 @@ export default async function Home() {
 
   return (
     <HydrateClient>
-      <main className="flex min-h-screen items-start bg-gradient-to-b from-[#05050b] to-[#010a2b]">
-        <header className="flex w-full items-center justify-between p-5">
-          <NavBar />
+      <Header session={session} />
 
-          <div className="flex gap-2">
-            {session && <p> Hi {session?.user.name} </p>}
-            <Link href={session ? "/api/auth/signout" : "/api/auth/signin"}>
-              <Button>{session ? "Sign Out" : "Sign In"}</Button>
-            </Link>
-          </div>
-        </header>
-      </main>
+      <main></main>
     </HydrateClient>
   );
 }

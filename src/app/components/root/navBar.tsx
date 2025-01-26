@@ -52,7 +52,12 @@ export function NavBar() {
 
         <NavigationMenuItem>
           <NavigationMenuLink asChild>
-            <Link href="/about" className={navigationMenuTriggerStyle() + ' hover:bg-accent/50'}>About</Link>
+            <Link
+              href="/about"
+              className={navigationMenuTriggerStyle() + " hover:bg-accent/50"}
+            >
+              About
+            </Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
       </NavigationMenuList>
@@ -78,9 +83,9 @@ function NavItem({
   href: string;
 }>) {
   return (
-    <NavigationMenuLink asChild className="hover:bg-accent/50 rounded-md">
+    <NavigationMenuLink asChild className="rounded-md hover:bg-accent/50">
       <Link href={href}>
-        <li className="h-full select-none flex flex-col gap-2 p-3">
+        <li className="flex h-full select-none flex-col gap-2 p-3">
           <div className="text-sm font-medium leading-none">{title}</div>
           <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
             {description}
