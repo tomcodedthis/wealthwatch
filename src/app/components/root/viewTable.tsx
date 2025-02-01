@@ -3,6 +3,7 @@ import {
   TableBody,
   TableCaption,
   TableCell,
+  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
@@ -12,9 +13,15 @@ interface TableProps {
   title: string;
   headers: string[];
   rows: Array<string | number>[];
+  footers: Array<string | number>;
 }
 
-export function ViewTable({ title, headers, rows }: Readonly<TableProps>) {
+export function ViewTable({
+  title,
+  headers,
+  rows,
+  footers,
+}: Readonly<TableProps>) {
   return (
     <Table>
       <TableCaption>{title}</TableCaption>
@@ -25,6 +32,7 @@ export function ViewTable({ title, headers, rows }: Readonly<TableProps>) {
           ))}
         </TableRow>
       </TableHeader>
+
       <TableBody>
         {rows.map((row) => (
           <TableRow key={`row-${row[0]}`}>
@@ -36,6 +44,14 @@ export function ViewTable({ title, headers, rows }: Readonly<TableProps>) {
           </TableRow>
         ))}
       </TableBody>
+
+      <TableFooter>
+        <TableRow>
+          {footers.map((footer) => (
+            <TableCell key={`footer-${footer}`}>{footer}</TableCell>
+          ))}
+        </TableRow>
+      </TableFooter>
     </Table>
   );
 }

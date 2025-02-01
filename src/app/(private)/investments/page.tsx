@@ -1,92 +1,47 @@
+import { INVESTMENT_OVERVIEW } from "@/app/(private)/investments/mockData";
 import { ViewTable } from "@/app/components/root/viewTable";
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from "@/app/components/ui/resizable";
 import { Header } from "@/components/root/header";
 import { auth } from "@/server/auth";
 import { HydrateClient } from "@/trpc/server";
 
-const INVESTMENT_OVERVIEW = {
-  headers: ["Month", "Invested", "Return (£)", "Return (%)"],
-  rows: [
-    {
-      month: "January",
-      invested: 100,
-      return: { currency: 200, percent: 100 },
-    },
-    {
-      month: "February",
-      invested: 150,
-      return: { currency: 250, percent: 166.67 },
-    },
-    {
-      month: "March",
-      invested: 200,
-      return: { currency: 300, percent: 150 },
-    },
-    {
-      month: "April",
-      invested: 250,
-      return: { currency: 400, percent: 160 },
-    },
-    {
-      month: "May",
-      invested: 300,
-      return: { currency: 500, percent: 166.67 },
-    },
-    {
-      month: "June",
-      invested: 350,
-      return: { currency: 600, percent: 171.43 },
-    },
-    {
-      month: "July",
-      invested: 400,
-      return: { currency: 700, percent: 175 },
-    },
-    {
-      month: "August",
-      invested: 450,
-      return: { currency: 800, percent: 177.78 },
-    },
-    {
-      month: "September",
-      invested: 500,
-      return: { currency: 900, percent: 180 },
-    },
-    {
-      month: "October",
-      invested: 550,
-      return: { currency: 1000, percent: 181.82 },
-    },
-    {
-      month: "November",
-      invested: 600,
-      return: { currency: 1100, percent: 183.33 },
-    },
-    {
-      month: "December",
-      invested: 650,
-      return: { currency: 1200, percent: 184.62 },
-    },
-  ],
-};
-
 export default async function Investments() {
   const session = await auth();
+  const investments = INVESTMENT_OVERVIEW;
 
   return (
     <HydrateClient>
       <Header session={session} />
 
-      <main className="grid place-items-center p-8">
-        <ViewTable
-          title="Overview of your monthly investment performance"
-          headers={INVESTMENT_OVERVIEW.headers}
-          rows={INVESTMENT_OVERVIEW.rows.map((row) => [
-            row.month,
-            row.invested,
-            row.return.currency,
-            row.return.percent,
-          ])}
-        />
+      <main className="grid h-[calc(100vh-5rem)] place-items-center p-8">
+        <ResizablePanelGroup direction="vertical">
+          <ResizablePanel defaultSize={50}>
+            <ResizablePanelGroup direction="horizontal">
+              <ResizablePanel>One</ResizablePanel>
+              <ResizableHandle withHandle />
+              <ResizablePanel>Two</ResizablePanel>
+            </ResizablePanelGroup>
+          </ResizablePanel>
+          <ResizableHandle withHandle />
+
+          <ResizablePanel className="p-4">
+            <ViewTable
+              title="Overview of your monthly investment performance"
+              headers={investments.headers}
+              rows={investments.rows.map((row) => [
+                row.month,
+                row.invested,
+                row.return.currency,
+                row.return.percent,
+              ])}
+              footers={investments.footers}
+            />
+          </ResizablePanel>
+        </ResizablePanelGroup>
       </main>
     </HydrateClient>
   );
