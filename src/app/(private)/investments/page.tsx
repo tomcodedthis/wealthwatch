@@ -1,3 +1,4 @@
+import { PieChart } from "@/app/components/root/pieChart";
 import { ViewTable } from "@/app/components/root/viewTable";
 import {
   ResizableHandle,
@@ -12,7 +13,7 @@ import { HydrateClient } from "@/trpc/server";
 
 export default async function Investments() {
   const session = await auth();
-  const { monthly, yearly } = getInvestments();
+  const { monthly, yearly, assetSplit } = getInvestments();
 
   return (
     <HydrateClient>
@@ -32,7 +33,13 @@ export default async function Investments() {
               </ResizablePanel>
 
               <ResizableHandle withHandle />
-              <ResizablePanel>Two</ResizablePanel>
+              <ResizablePanel>
+                <PieChart
+                  title="Asset Split"
+                  data={assetSplit.data}
+                  config={assetSplit.config}
+                />
+              </ResizablePanel>
             </ResizablePanelGroup>
           </ResizablePanel>
           <ResizableHandle withHandle />

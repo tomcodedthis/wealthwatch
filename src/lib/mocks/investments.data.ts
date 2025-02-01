@@ -1,3 +1,4 @@
+import type { ChartConfig } from "@/app/components/ui/chart";
 import { parseCurrency, parsePercent } from "@/lib/utils";
 
 const MONTHLY_HEADERS = ["Month", "Invested", "Return", ""];
@@ -97,3 +98,19 @@ export const YEARLY_INVESTMENTS = {
   rows: YEARLY_ROWS,
   footers: [],
 };
+
+export const ASSET_SPLIT_DATA = [
+  { title: "Stocks", value: 40, fill: "hsl(var(--chart-1))" },
+  { title: "Crypto", value: 60, fill: "hsl(var(--chart-2))" },
+];
+
+export const ASSET_SPLIT_CONFIG = {
+  Stocks: {
+    label: "Stocks",
+    color: "hsl(var(--chart-1))",
+  },
+  Crypto: {
+    label: "Crypto",
+    color: "hsl(var(--chart-2))",
+  },
+} satisfies ChartConfig;
