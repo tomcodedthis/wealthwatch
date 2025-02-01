@@ -1,3 +1,4 @@
+import { LineChart } from "@/app/components/root/lineChart";
 import { PieChart } from "@/app/components/root/pieChart";
 import { ViewTable } from "@/app/components/root/viewTable";
 import {
@@ -13,7 +14,7 @@ import { HydrateClient } from "@/trpc/server";
 
 export default async function Investments() {
   const session = await auth();
-  const { monthly, yearly, assetSplit } = getInvestments();
+  const { monthly, yearly, assetSplit, monthlyPerformance } = getInvestments();
 
   return (
     <HydrateClient>
@@ -23,7 +24,10 @@ export default async function Investments() {
         <ResizablePanelGroup direction="vertical" className="gap-1">
           <ResizablePanel defaultSize={55} className="p-0">
             <ResizablePanelGroup direction="horizontal">
-              <ResizablePanel>
+              <ResizablePanel
+                defaultSize={25}
+                className="grid place-items-center"
+              >
                 <ViewTable
                   title="Yearly Overview"
                   headers={yearly.headers}
@@ -33,11 +37,20 @@ export default async function Investments() {
               </ResizablePanel>
 
               <ResizableHandle withHandle />
-              <ResizablePanel>
+              <ResizablePanel defaultSize={25}>
                 <PieChart
                   title="Asset Split"
                   data={assetSplit.data}
                   config={assetSplit.config}
+                />
+              </ResizablePanel>
+
+              <ResizableHandle withHandle />
+              <ResizablePanel defaultSize={50}>
+                <LineChart
+                  title="Monthly Performance"
+                  data={monthlyPerformance.data}
+                  config={monthlyPerformance.config}
                 />
               </ResizablePanel>
             </ResizablePanelGroup>

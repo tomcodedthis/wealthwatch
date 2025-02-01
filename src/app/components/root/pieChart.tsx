@@ -21,7 +21,10 @@ export function PieChart({
   return (
     <div className="block h-full place-items-center">
       <h1 className="text-muted-foreground text-sm">{title}</h1>
-      <ChartContainer config={config} className="mx-auto aspect-square h-full">
+      <ChartContainer
+        config={config}
+        className="mx-auto aspect-square h-full w-full"
+      >
         <PChart>
           <ChartTooltip
             content={<ChartTooltipContent nameKey="value" hideLabel />}
