@@ -1,29 +1,31 @@
-const MONTHLY_HEADERS = ["Month", "Invested", "Return (£)", "Return (%)"];
+import { parseCurrency, parsePercent } from "@/lib/utils";
+
+const MONTHLY_HEADERS = ["Month", "Invested", "Return", ""];
 const MONTHLY_ROWS = [
   {
     month: "January",
     invested: 100,
-    return: { currency: 200, percent: 100 },
+    return: { currency: 1.25, percent: 1.12 },
   },
   {
     month: "February",
     invested: 150,
-    return: { currency: 250, percent: 166.67 },
+    return: { currency: 25.25, percent: 24.678 },
   },
   {
     month: "March",
     invested: 200,
-    return: { currency: 300, percent: 150 },
+    return: { currency: 300.52, percent: 150 },
   },
   {
     month: "April",
     invested: 250,
-    return: { currency: 400, percent: 160 },
+    return: { currency: 1, percent: 160 },
   },
   {
     month: "May",
     invested: 300,
-    return: { currency: 500, percent: 166.67 },
+    return: { currency: 500, percent: 1066.67 },
   },
   {
     month: "June",
@@ -70,7 +72,12 @@ const returnTotal = MONTHLY_ROWS.reduce(
 const percentTotal = parseFloat(
   ((returnTotal / investedTotal) * 100).toPrecision(3),
 );
-const MONTHLY_FOOTERS = ["TOTAL", investedTotal, returnTotal, percentTotal];
+const MONTHLY_FOOTERS = [
+  "TOTAL",
+  parseCurrency(investedTotal),
+  parseCurrency(returnTotal),
+  parsePercent(percentTotal),
+];
 export const MONTHLY_INVESTMENTS = {
   headers: MONTHLY_HEADERS,
   rows: MONTHLY_ROWS,
@@ -78,12 +85,12 @@ export const MONTHLY_INVESTMENTS = {
 };
 
 const YEARLY_ROWS = [
-  { title: "Stocks", value: 15000 },
-  { title: "Crypto", value: 15000 },
-  { title: "Invested", value: 10000 },
-  { title: "Return", value: 30000 },
-  { title: "P/L (£)", value: 20000 },
-  { title: "P/L (%)", value: 200 },
+  { title: "Stocks", value: parseCurrency(15000) },
+  { title: "Crypto", value: parseCurrency(15000) },
+  { title: "Invested", value: parseCurrency(10000) },
+  { title: "Return", value: parseCurrency(30000) },
+  { title: "P/L (£)", value: parseCurrency(20000) },
+  { title: "P/L (%)", value: parsePercent(2500) },
 ];
 export const YEARLY_INVESTMENTS = {
   headers: [],

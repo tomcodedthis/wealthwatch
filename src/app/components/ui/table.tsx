@@ -6,10 +6,10 @@ const Table = React.forwardRef<
   HTMLTableElement,
   React.HTMLAttributes<HTMLTableElement>
 >(({ className, ...props }, ref) => (
-  <div className={cn("relative max-h-full w-full overflow-auto", className)}>
+  <div className={cn("relative max-h-full w-full overflow-y-auto text-xs text-center", className)}>
     <table
       ref={ref}
-      className={cn("w-full caption-bottom text-sm")}
+      className={cn("w-full caption-top")}
       {...props}
     />
   </div>
@@ -47,7 +47,7 @@ const TableFooter = React.forwardRef<
   <tfoot
     ref={ref}
     className={cn(
-      "bg-muted sticky bottom-0 z-10 border-t font-medium [&>tr]:last:border-b-0",
+      "bg-muted sticky bottom-0 z-10 font-semibold [&>tr]:last:border-b-0",
       className,
     )}
     {...props}
@@ -77,7 +77,7 @@ const TableHead = React.forwardRef<
   <th
     ref={ref}
     className={cn(
-      "text-muted-foreground p-2 text-left align-middle font-medium [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
+      "text-muted-foreground font-medium p-2 [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
       className,
     )}
     {...props}
@@ -106,7 +106,7 @@ const TableCaption = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <caption
     ref={ref}
-    className={cn("text-muted-foreground mt-4 text-sm", className)}
+    className={cn("text-muted-foreground mb-4 text-sm", className)}
     {...props}
   />
 ));

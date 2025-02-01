@@ -6,6 +6,7 @@ import {
 } from "@/app/components/ui/resizable";
 import { getInvestments } from "@/app/hooks/useInvestments";
 import { Header } from "@/components/root/header";
+import { parseCurrency, parsePercent } from "@/lib/utils";
 import { auth } from "@/server/auth";
 import { HydrateClient } from "@/trpc/server";
 
@@ -18,12 +19,12 @@ export default async function Investments() {
       <Header session={session} />
 
       <main className="grid h-[calc(100vh-5rem)] place-items-center">
-        <ResizablePanelGroup direction="vertical" className="gap-2">
-          <ResizablePanel defaultSize={40} className="p-0">
+        <ResizablePanelGroup direction="vertical" className="gap-1">
+          <ResizablePanel defaultSize={55} className="p-0">
             <ResizablePanelGroup direction="horizontal">
               <ResizablePanel>
                 <ViewTable
-                  title="Overview of your yearly investment performance"
+                  title="Yearly Overview"
                   headers={yearly.headers}
                   rows={yearly.rows.map((row) => [row.title, row.value])}
                   footers={yearly.footers}
@@ -38,13 +39,13 @@ export default async function Investments() {
 
           <ResizablePanel>
             <ViewTable
-              title="Overview of your monthly investment performance"
+              title="Monthly Overview"
               headers={monthly.headers}
               rows={monthly.rows.map((row) => [
                 row.month,
-                row.invested,
-                row.return.currency,
-                row.return.percent,
+                parseCurrency(row.invested),
+                parseCurrency(row.return.currency),
+                parsePercent(row.return.percent),
               ])}
               footers={monthly.footers}
             />
