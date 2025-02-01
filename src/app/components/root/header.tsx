@@ -7,7 +7,7 @@ export async function Header({
   session,
 }: Readonly<{ session: Session | null }>) {
   return (
-    <header className="flex w-full items-center justify-between p-5">
+    <header className="flex w-full items-center justify-between p-4">
       <NavBar />
 
       <div className="flex gap-2">

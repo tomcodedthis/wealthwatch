@@ -1,6 +1,5 @@
-const headers = ["Month", "Invested", "Return (£)", "Return (%)"];
-
-const rows = [
+const MONTHLY_HEADERS = ["Month", "Invested", "Return (£)", "Return (%)"];
+const MONTHLY_ROWS = [
   {
     month: "January",
     invested: 100,
@@ -63,12 +62,31 @@ const rows = [
   },
 ];
 
-const investedTotal = rows.reduce((sum, row) => sum + row.invested, 0);
-const returnTotal = rows.reduce((sum, row) => sum + row.return.currency, 0);
+const investedTotal = MONTHLY_ROWS.reduce((sum, row) => sum + row.invested, 0);
+const returnTotal = MONTHLY_ROWS.reduce(
+  (sum, row) => sum + row.return.currency,
+  0,
+);
 const percentTotal = parseFloat(
   ((returnTotal / investedTotal) * 100).toPrecision(3),
 );
+const MONTHLY_FOOTERS = ["TOTAL", investedTotal, returnTotal, percentTotal];
+export const MONTHLY_INVESTMENTS = {
+  headers: MONTHLY_HEADERS,
+  rows: MONTHLY_ROWS,
+  footers: MONTHLY_FOOTERS,
+};
 
-const footers = ["TOTAL", investedTotal, returnTotal, percentTotal];
-
-export const INVESTMENT_OVERVIEW = { headers, rows, footers };
+const YEARLY_ROWS = [
+  { title: "Stocks", value: 15000 },
+  { title: "Crypto", value: 15000 },
+  { title: "Invested", value: 10000 },
+  { title: "Return", value: 30000 },
+  { title: "P/L (£)", value: 20000 },
+  { title: "P/L (%)", value: 200 },
+];
+export const YEARLY_INVESTMENTS = {
+  headers: [],
+  rows: YEARLY_ROWS,
+  footers: [],
+};
