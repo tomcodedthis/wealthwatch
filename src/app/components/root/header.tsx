@@ -3,9 +3,7 @@ import { Button } from "@/app/components/ui/button";
 import type { Session } from "next-auth";
 import Link from "next/link";
 
-export async function Header({
-  session,
-}: Readonly<{ session: Session | null }>) {
+export function Header({ session }: Readonly<{ session: Session | null }>) {
   return (
     <header className="flex w-full items-center justify-between p-4">
       <NavBar />

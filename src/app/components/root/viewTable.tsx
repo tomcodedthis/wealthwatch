@@ -12,8 +12,8 @@ import {
 interface TableProps {
   title: string;
   headers: string[];
-  rows: Array<string | number>[];
-  footers: Array<string | number>;
+  rows: (string | number)[][];
+  footers: (string | number)[];
 }
 
 export function ViewTable({
