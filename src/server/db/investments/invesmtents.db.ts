@@ -1,6 +1,6 @@
 import type { DBClient } from "@/server/db/types";
 
-interface Investment {
+export interface Investment {
   user_uid: string;
   amount: number;
   ticker: string;
@@ -16,9 +16,9 @@ export async function addInvestment(
   const table = client.from("investments");
   const response = await table.insert([partialInvestment]).select();
 
-  if (response.error || response.data == null) {
+  if (response.error || response.data == null || response.data.length === 0) {
     throw Error("Failed to add investment");
   }
 
-  return response.data[0]!;
+  return response.data[0];
 }

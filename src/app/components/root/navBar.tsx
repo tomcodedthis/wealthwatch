@@ -83,11 +83,11 @@ function NavItem({
   href: string;
 }>) {
   return (
-    <NavigationMenuLink asChild className="rounded-md hover:bg-accent/50">
+    <NavigationMenuLink asChild className="hover:bg-accent/50 rounded-md">
       <Link href={href}>
-        <li className="flex h-full select-none flex-col gap-2 p-3">
-          <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+        <li className="flex h-full flex-col gap-2 p-3 select-none">
+          <div className="text-sm leading-none font-medium">{title}</div>
+          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
             {description}
           </p>
         </li>
