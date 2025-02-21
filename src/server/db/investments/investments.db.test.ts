@@ -1,35 +1,31 @@
-import { addInvestment } from "./invesmtents.db";
-import type { Database, DBClient } from "@/server/db/types";
-import { createClient } from "@supabase/supabase-js";
-import { beforeEach } from "node:test";
-import { describe, expect, it } from "vitest";
+import type { DBClient } from "@/server/db/types";
+import { faker } from "@faker-js/faker";
+import { describe, expect, it, vi } from "vitest";
+import { addInvestment, type AddInvestmentProps } from "./invesmtents.db";
 
-const dbClient: DBClient = createClient<Database>(
-  "https://w.test-url.com",
-  "test.key",
-);
-const investmentTable = dbClient.from("investments");
+const mockedInvestment: AddInvestmentProps = {
+  user_uid: faker.string.ulid(),
+  ticker: faker.string.alpha(4).toUpperCase(),
+  amount: faker.number.float({ fractionDigits: 4 }),
+};
 
 describe("investments DB", () => {
-  beforeEach(async () => {
-    await investmentTable.delete();
-  });
-
   it("should add a new investment given a user_uid, ticker, amount", async () => {
-    const newInvestment = {
-      user_uid: "test-user",
-      ticker: "test-ticker",
-      amount: 100,
-    };
-    const { id } = await addInvestment(newInvestment, dbClient);
-
-    const rowInDB = (await investmentTable.select("*").filter("id", "eq", id))
-      .data;
-
-    expect(rowInDB).not.toBeNull();
-    expect(rowInDB![0]).toMatchObject({
-      ...newInvestment,
-      id,
+    // Assemble
+    const mockInsert = vi.fn().mockReturnValueOnce({
+      select: vi.fn().mockResolvedValueOnce({
+        error: null,
+        data: [mockedInvestment],
+      }),
     });
+    const mockClient = {
+      from: vi.fn().mockReturnValueOnce({ insert: mockInsert }),
+    } as unknown as DBClient;
+
+    // Act
+    const newInvestment = await addInvestment(mockedInvestment, mockClient);
+
+    // Assert
+    expect(newInvestment).toMatchObject(mockedInvestment);
   });
 });

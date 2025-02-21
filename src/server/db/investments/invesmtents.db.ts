@@ -1,16 +1,24 @@
 import type { DBClient } from "@/server/db/types";
 
-interface AddInvestmentParams {
+interface Investment {
   user_uid: string;
-  ticker: string;
   amount: number;
+  ticker: string;
+  created_at: string;
 }
 
+export type AddInvestmentProps = Omit<Investment, "created_at">;
+
 export async function addInvestment(
-  { user_uid, ticker, amount }: AddInvestmentParams,
+  partialInvestment: AddInvestmentProps,
   client: DBClient,
 ) {
-  return {
-    id: "",
-  };
+  const table = client.from("investments");
+  const response = await table.insert([partialInvestment]).select();
+
+  if (response.error || response.data == null) {
+    throw Error("Failed to add investment");
+  }
+
+  return response.data[0]!;
 }
