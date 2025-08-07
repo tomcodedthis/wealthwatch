@@ -35,7 +35,7 @@ export function NavBar() {
           </NavigationMenuContent>
         </NavigationMenuItem>
 
-        <NavigationMenuItem>
+        {/* <NavigationMenuItem>
           <Link href={"/budget"}>
             <NavigationMenuTrigger>Budget</NavigationMenuTrigger>
           </Link>
@@ -64,7 +64,7 @@ export function NavBar() {
               About
             </Link>
           </NavigationMenuLink>
-        </NavigationMenuItem>
+        </NavigationMenuItem> */}
       </NavigationMenuList>
     </NavigationMenu>
   );

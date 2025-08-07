@@ -225,7 +225,7 @@
 .dark {
   --background: 240 10% 3.9%;
   --foreground: 0 0% 98%;
-  --card: 240 10% 3.9%;
+  --card: 240 60% 3.9%;
   --card-foreground: 0 0% 98%;
   --popover: 240 10% 3.9%;
   --popover-foreground: 0 0% 98%;
@@ -257,7 +257,9 @@
   --sidebar-ring: 240 4.9% 83.9%;
 }
 
-
+* {
+  color: var(--color-muted-foreground);
+}
 
 button {
   cursor: pointer;

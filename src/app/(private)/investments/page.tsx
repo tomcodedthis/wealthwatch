@@ -6,6 +6,7 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/app/components/ui/resizable";
+import { Section } from "@/app/components/ui/section";
 import { getInvestments } from "@/app/hooks/useInvestments";
 import { Header } from "@/components/root/header";
 import { parseCurrency, parsePercent } from "@/lib/utils";
@@ -22,53 +23,57 @@ export default async function Investments() {
 
       <main className="grid h-[94vh] place-items-center p-8">
         <ResizablePanelGroup direction="vertical" className="gap-1">
-          <ResizablePanel defaultSize={55} className="p-0">
+          <ResizablePanel defaultSize={30} className="p-0">
             <ResizablePanelGroup direction="horizontal">
               <ResizablePanel
                 defaultSize={25}
                 className="grid place-items-center dark:bg-white/5"
               >
-                <ViewTable
-                  title="Yearly Overview"
-                  headers={yearly.headers}
-                  rows={yearly.rows.map((row) => [row.title, row.value])}
-                  footers={yearly.footers}
-                />
+                <Section title="Yearly">
+                  <ViewTable
+                    headers={yearly.headers}
+                    rows={yearly.rows.map((row) => [row.title, row.value])}
+                    footers={yearly.footers}
+                  />
+                </Section>
               </ResizablePanel>
 
               <ResizableHandle withHandle />
               <ResizablePanel defaultSize={25}>
-                <PieChart
-                  title="Asset Split"
-                  data={assetSplit.data}
-                  config={assetSplit.config}
-                />
+                <Section title="Asset Split">
+                  <PieChart
+                    data={assetSplit.data}
+                    config={assetSplit.config}
+                  />
+                </Section>
               </ResizablePanel>
 
               <ResizableHandle withHandle />
               <ResizablePanel defaultSize={50}>
-                <LineChart
-                  title="Monthly Performance"
-                  data={monthlyPerformance.data}
-                  config={monthlyPerformance.config}
-                />
+                <Section title="Performance">
+                  <LineChart
+                    data={monthlyPerformance.data}
+                    config={monthlyPerformance.config}
+                  />
+                </Section>
               </ResizablePanel>
             </ResizablePanelGroup>
           </ResizablePanel>
           <ResizableHandle withHandle />
 
           <ResizablePanel>
-            <ViewTable
-              title="Monthly Overview"
-              headers={monthly.headers}
-              rows={monthly.rows.map((row) => [
-                row.month,
-                parseCurrency(row.invested),
-                parseCurrency(row.return.currency),
-                parsePercent(row.return.percent),
-              ])}
-              footers={monthly.footers}
-            />
+            <Section title="Monthly">
+              <ViewTable
+                headers={monthly.headers}
+                rows={monthly.rows.map((row) => [
+                  row.month,
+                  parseCurrency(row.invested),
+                  parseCurrency(row.return.currency),
+                  parsePercent(row.return.percent),
+                ])}
+                footers={monthly.footers}
+              />
+            </Section>
           </ResizablePanel>
         </ResizablePanelGroup>
       </main>

@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export function Header({ session }: Readonly<{ session: Session | null }>) {
   return (
-    <header className="flex h-[6vh] min-h-[70px] w-full items-center gap-2 md:gap-4 justify-center p-0">
+    <header className="flex h-[6vh] min-h-[70px] w-full items-center gap-8 md:gap-12 justify-center p-0">
       <NavBar />
 
       {session && <p> Hi {session?.user.name} </p>}

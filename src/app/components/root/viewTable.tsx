@@ -1,7 +1,6 @@
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableFooter,
   TableHead,
@@ -10,21 +9,14 @@ import {
 } from "@/app/components/ui/table";
 
 interface TableProps {
-  title: string;
   headers: string[];
   rows: (string | number)[][];
   footers: (string | number)[];
 }
 
-export function ViewTable({
-  title,
-  headers,
-  rows,
-  footers,
-}: Readonly<TableProps>) {
+export function ViewTable({ headers, rows, footers }: Readonly<TableProps>) {
   return (
-    <Table>
-      <TableCaption>{title}</TableCaption>
+    <Table className="flex h-full text-xs md:text-sm">
       <TableHeader>
         <TableRow>
           {headers.map((header) => (
@@ -33,7 +25,7 @@ export function ViewTable({
         </TableRow>
       </TableHeader>
 
-      <TableBody>
+      <TableBody className="h-full w-full">
         {rows.map((row) => (
           <TableRow key={`row-${row[0]}`}>
             {row.map((cell, index) => (
