@@ -36,7 +36,7 @@ export function AnimatedBackground() {
     const SPEED = 0.0002; // lower = slower movement
     let time = 0;
 
-    type Bubble = {
+    interface Bubble {
       x: number;
       y: number;
       vx: number;
@@ -44,9 +44,9 @@ export function AnimatedBackground() {
       r: number;
       alpha: number;
       alphaDir: number;
-    };
+    }
 
-    const bubbles: Bubble[] = Array.from({ length: SEGMENTS }, (_, i) => {
+    const bubbles: Bubble[] = Array.from({ length: SEGMENTS }, () => {
       const r = BUBBLE_RADIUS * (0.5 + Math.random() * 1.4);
       const x = r + Math.random() * (width - 2 * r);
       const y = r + Math.random() * (height - 2 * r);

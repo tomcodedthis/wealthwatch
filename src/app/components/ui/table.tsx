@@ -107,7 +107,10 @@ const TableCaption = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <caption
     ref={ref}
-    className={cn("text-muted-foreground font-mono mb-4 text-xs md:text-lg", className)}
+    className={cn(
+      "text-muted-foreground mb-4 font-mono text-xs md:text-lg",
+      className,
+    )}
     {...props}
   />
 ));

@@ -41,10 +41,7 @@ export default async function Investments() {
               <ResizableHandle withHandle />
               <ResizablePanel defaultSize={25}>
                 <Section title="Asset Split">
-                  <PieChart
-                    data={assetSplit.data}
-                    config={assetSplit.config}
-                  />
+                  <PieChart data={assetSplit.data} config={assetSplit.config} />
                 </Section>
               </ResizablePanel>
 

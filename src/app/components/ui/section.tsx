@@ -8,7 +8,7 @@ interface SectionProps {
 
 export function Section({ title, children }: Readonly<SectionProps>) {
   return (
-    <Card className="flex h-full w-full flex-col place-items-center bg-black p-4 bg-card">
+    <Card className="bg-card flex h-full w-full flex-col place-items-center bg-black p-4">
       <CardTitle className="text-muted-foreground mb-4 text-xs font-extralight uppercase md:text-lg">
         {title}
       </CardTitle>
