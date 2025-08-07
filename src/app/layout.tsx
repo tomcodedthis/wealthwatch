@@ -3,6 +3,7 @@ import "@/styles/globals.css";
 import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
 
+import { AnimatedBackground } from "@/app/components/root/animatedBackground";
 import { ThemeProvider } from "@/app/theme";
 import { TRPCReactProvider } from "@/trpc/react";
 
@@ -18,6 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
       <body className="min-h-screen bg-linear-to-b from-[#05050b] to-[#010a2b]">
+        <AnimatedBackground />
         <TRPCReactProvider>
           <ThemeProvider
             attribute="class"
