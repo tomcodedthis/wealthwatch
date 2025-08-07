@@ -5,15 +5,13 @@ import Link from "next/link";
 
 export function Header({ session }: Readonly<{ session: Session | null }>) {
   return (
-    <header className="flex w-full items-center justify-between p-4">
+    <header className="flex h-[6vh] min-h-[70px] w-full items-center gap-2 md:gap-4 justify-center p-0">
       <NavBar />
 
-      <div className="flex gap-2">
-        {session && <p> Hi {session?.user.name} </p>}
-        <Link href={session ? "/api/auth/signout" : "/api/auth/signin"}>
-          <Button>{session ? "Sign Out" : "Sign In"}</Button>
-        </Link>
-      </div>
+      {session && <p> Hi {session?.user.name} </p>}
+      <Link href={session ? "/api/auth/signout" : "/api/auth/signin"}>
+        <Button>{session ? "Sign Out" : "Sign In"}</Button>
+      </Link>
     </header>
   );
 }

@@ -256,3 +256,9 @@
   --sidebar-border: 240 3.7% 15.9%;
   --sidebar-ring: 240 4.9% 83.9%;
 }
+
+
+
+button {
+  cursor: pointer;
+}

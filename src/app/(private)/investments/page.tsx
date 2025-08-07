@@ -20,7 +20,7 @@ export default async function Investments() {
     <HydrateClient>
       <Header session={session} />
 
-      <main className="grid h-[calc(100vh-5rem)] place-items-center p-8">
+      <main className="grid h-[94vh] place-items-center p-8">
         <ResizablePanelGroup direction="vertical" className="gap-1">
           <ResizablePanel defaultSize={55} className="p-0">
             <ResizablePanelGroup direction="horizontal">

@@ -15,7 +15,10 @@ export function NavBar() {
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Investments</NavigationMenuTrigger>
+          <Link href={"/investments"}>
+            <NavigationMenuTrigger>Investments</NavigationMenuTrigger>
+          </Link>
+
           <NavigationMenuContent>
             <NavTab>
               <NavItem
@@ -33,7 +36,9 @@ export function NavBar() {
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Budget</NavigationMenuTrigger>
+          <Link href={"/budget"}>
+            <NavigationMenuTrigger>Budget</NavigationMenuTrigger>
+          </Link>
           <NavigationMenuContent>
             <NavTab>
               <NavItem
@@ -86,8 +91,10 @@ function NavItem({
     <NavigationMenuLink asChild className="hover:bg-accent/50 rounded-md">
       <Link href={href}>
         <li className="flex h-full flex-col gap-2 p-3 select-none">
-          <div className="text-sm leading-none font-medium">{title}</div>
-          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
+          <div className="text-xs leading-none font-medium md:text-lg">
+            {title}
+          </div>
+          <p className="text-muted-foreground md:text-md line-clamp-2 text-xs leading-snug">
             {description}
           </p>
         </li>
